@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-![image](https://github.com/xiaotanit/tan_vue/blob/master/test.png)
+![image](https://github.com/xiaotanit/tan_vue/blob/master/images/test.png)

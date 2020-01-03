@@ -6,10 +6,14 @@
 </template>
 
 <script>
+
     export default {
         name: 'pageD',
         created(){
-            console.log(this.$route)
+
+        },
+        methods:{
+
         }
     }
 </script>

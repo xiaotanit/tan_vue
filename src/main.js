@@ -19,12 +19,27 @@ Vue.config.productionTip = false
  next(error): (2.4.0+) 如果传入 next 的参数是一个 Error 实例，则导航会被终止且该错误会被传递给 router.onError() 注册过的回调。
 
  确保要调用 next 方法，否则钩子就不会被 resolved。
+
+ 路由守卫调用步骤：
+ 1、beforeEach  //全局守卫
+2、beforeEnter  //路由独享守卫
+3、beforeRouteEnter  //组件内守卫
+4、beforeResolve   //全局解析守卫
+5、afterEach        //全局后置钩子
+6、beforeRouteLeave  //离开页面的时候调用，组件内独享（不离开页面不调用）
+
+如果是路由复用（路由不变，路径参数变化）
+1、beforeEach  //全局守卫
+2、beforeRouteUpdate //组件内守卫
+3、beforeResolve   //全局解析守卫
+4、afterEach        //全局后置钩子
+5、beforeRouteLeave  //离开页面的时候调用，组件内独享（不离开页面不调用）
 */
 router.beforeEach((to, from, next)=>{
   console.log("....beforeEach....")
   console.log(to)
   console.log(from)
-  console.log(next);
+  // console.log(next);
   console.log('*****beforeEach*******')
 
   //数据校验时
@@ -48,7 +63,7 @@ router.beforeResolve((to, from, next)=>{
   console.log("....beforeResolve....")
   console.log(to)
   console.log(from)
-  console.log(next);
+  // console.log(next);
   next()
 })
 

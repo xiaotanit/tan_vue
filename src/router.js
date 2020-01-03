@@ -6,6 +6,7 @@ import PageB from './views/PageB'
 import PageC from './views/PageC'
 import PageD from './views/PageD'
 // import Home from './views/Home'
+import PageModule from './views/PageModule.vue'
 
 //安装路由到vue
 Vue.use(Router)
@@ -25,7 +26,7 @@ const routes = [
             console.log(".....路由独享的守卫...beforeEnter...")
             console.log(to)
             console.log(from)
-            console.log(next)
+            // console.log(next)
             next();
         }
     },
@@ -55,9 +56,14 @@ const routes = [
         name: 'pageD',
         components: {  //演示命名视图
             default: PageD,
-            tanA: PageA,
+            tanA: PageC,
             tanB: PageB
         }
+    },
+    { //测试模块打包导入导出
+        path: '/pageModule',
+        name: 'pageModule',
+        component: PageModule
     }
 ]
 
@@ -65,22 +71,6 @@ export default new Router({
     //mode: 'hash', //默认hash模式，hash模式有#；另外还有一种history模式，没有#符号
     mode: 'history', //history模式，没有#符号
     routes,
-    //路由全局守卫，路由每次跳转时会调用
-    beforeEach: (to, from, next)=>{
-        console.log("....beforeEach....")
-        console.log(to)
-        console.log(from)
-        console.log(next);
-        next()
-    },
-    beforeResolve: (to, from, next)=>{
-        console.log(".....beforeResolve...")
-        console.log(to)
-        console.log(from)
-        console.log(next);
-        next()
-    }
-
 })
 
 //全局守卫
