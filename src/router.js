@@ -7,6 +7,7 @@ import PageC from './views/PageC'
 import PageD from './views/PageD'
 // import Home from './views/Home'
 import PageModule from './views/PageModule.vue'
+import PageWaterFall from './views/PageWaterFall.vue' //瀑布流
 
 //安装路由到vue
 Vue.use(Router)
@@ -64,6 +65,11 @@ const routes = [
         path: '/pageModule',
         name: 'pageModule',
         component: PageModule
+    },
+    {  //瀑布流演示
+        path: '/pageWaterFall',
+        name: 'pageWaterFall',
+        component: PageWaterFall
     }
 ]
 

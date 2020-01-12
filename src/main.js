@@ -1,8 +1,19 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router.js'
+import axios from 'axios'
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios; //全局配置注册，使用时是：this.$axios
+
+//有赞组件和样式引入
+import { PullRefresh, List, Toast } from 'vant'
+import 'vant/lib/index.css';
+Vue.use(PullRefresh);
+Vue.use(List);
+Vue.use(Toast);
+
+
 
 //全局守卫
 /*beforeEach， 全局前置守卫，当一个导航触发时，全局前置守卫按照创建顺序调用。
