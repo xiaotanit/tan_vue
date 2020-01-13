@@ -1,4 +1,4 @@
-<!-- 网络图片瀑布流 -->
+<!-- web瀑布流(网络图片) -->
 <template>
     <div class="flow-box">
         <!-- 类别列表 --> 
@@ -42,7 +42,7 @@
                 dataList: [], //列表数据 
                 haveData: 0, //是否有数据，1=无，2=有，0=页面还未初始化 
                 pageIndex: 1, //页码 
-                pageSize: 15, //每页加载数据数量 
+                pageSize: 8, //每页加载数据数量 
                 isLoading: false,  //下拉刷新进行中，请求开始true, 请求完成false，用于下拉刷新组件van-pull-refresh 
                 loading: false,  //上拉加载更多中，上拉触底时自动变成true, 请求完成设置为false, 用于列表组件van-list 
                 finished: false, //上拉加载是否加载完最后一页数，用于组件van-list  
@@ -67,11 +67,17 @@
             changeType(index){ //切换类型
                 if (this.typeIndex == index) return;
 
+                this.$toast.loading({
+                    message: '加载中...',
+                    duration: 0
+                });
                 this.typeIndex = index;
                 this.onRefresh();
             },
             onRefresh(){ //下拉刷新
-                if (this.isLoading) return; //还在请求中，返回
+
+                // if (this.isLoading) return; //还在请求中，返回
+
                 this.pageIndex = 1; //重置第一页
                 this.isLoading = true; //开始加载
                 this.finished = false; //上拉加载"所有数据已经完成"标识 重置为false
@@ -86,7 +92,6 @@
             },
             //数据请求
             getDataList(){
-                console.log("....数据请求中, index: ", this.pageIndex);
 
                 this.$axios.get("/json/dataList.json").then((res)=>{
 
@@ -124,7 +129,7 @@
                         if (e.type == 'load'){ //图片加载成功
                             //计算图片缩放后的高度：图片原高度/原宽度 = 缩放后高度/缩放后宽度
                             list[index].imgHeight = Math.round(img.height * this.boxWidth / img.width);
-                            console.log('index: ', index, ', load suc, imgHeiht: ', list[index].imgHeight);
+                            // console.log('index: ', index, ', load suc, imgHeiht: ', list[index].imgHeight);
                         }
                         else{ //图片加载失败，给一个默认高度50
                             list[index].imgHeight = 50;
@@ -161,11 +166,14 @@
                 this.loading = false; //上拉加载更多请求完成
 
                 console.log("...datalist: ", this.dataList);
+                console.log("...this.isLoading: ", this.isLoading)
 
                 this.$nextTick(()=>{
                     setTimeout(()=>{
                         //渲染完成，计算每个item宽高，设置标签坐标定位
                         this.setItemElementPosition();
+                        this.isLoading = false; //下拉刷新请求完成
+                        this.loading = false; //上拉加载更多请求完成
                     }, 1000)
                 });
             },
@@ -184,7 +192,7 @@
                     tempEle.style.top = boxTop + 'px';
                     this.lastRowHeights[curColIndex] = boxTop + tempEle.offsetHeight;
 
-                    console.log('i = ', i, ', boxTop: ', boxTop, ', eleHeight: ', tempEle.offsetHeight);
+                    // console.log('i = ', i, ', boxTop: ', boxTop, ', eleHeight: ', tempEle.offsetHeight);
                 }
 
                 this.itemCount = boxEles.length;
@@ -231,10 +239,10 @@
         0% { transform: scale(0.5); }
         100% { transform: scale(1); }
     }
-    .flow-box .data-list-box { position: relative; margin-height: 100vh; }
+    .flow-box .data-list-box { position: relative; margin-height: 100vh; margin-top: 40px; }
     .data-list-box .data-item {
         height: auto; box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
-        position: absolute; left: -1000px; background-color: #ffffff;
+        position: absolute; background-color: #ffffff; left: -1000px;
         animation: data-item-ani 0.4s;
         transition: left 0.6s, top 0.6s;
         transition-delay: 0.1s;
@@ -242,5 +250,4 @@
     .data-item .data-cover { display: block; }
     .data-item .data-name { font-size: 14px; padding: 5px 10px; text-align: left; }
 
-    .no-data { font-size: 15px; text-align: center; color: #999999; margin-top: 200px; }
 </style>

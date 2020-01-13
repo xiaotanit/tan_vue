@@ -1,27 +1,24 @@
 # tan_vue
 
-## Project setup
+## 项目运行步骤（Project setup）：第一步，安装依赖包
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+### 第二步：开发环境运行
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
+### 生产环境运行命令（Compiles and minifies for production）
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 部分效果截图
+### vue网络图片瀑布流效果动图 + 下拉刷新 + 上拉加载更多
+![image](https://github.com/xiaotanit/tan_vue/blob/master/images/waterfall.gif)
+![image](https://github.com/xiaotanit/tan_vue/blob/master/images/waterfall.png)
+### 博客地址
+See [vue网路图片瀑布流效果](https://www.cnblogs.com/tandaxia/p/12189301.html).
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
+### 其他功能效果截图
 ![image](https://github.com/xiaotanit/tan_vue/blob/master/images/test.png)
