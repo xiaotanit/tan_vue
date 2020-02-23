@@ -8,6 +8,10 @@ import PageD from './views/PageD'
 // import Home from './views/Home'
 import PageModule from './views/PageModule.vue'
 import PageWaterFall from './views/PageWaterFall.vue' //瀑布流
+//测试vuex
+import VuexPageA from './views/vuex/VuexPageA.vue'
+import VuexPageB from './views/vuex/VuexPageB.vue'
+import VuexPageC from './views/vuex/VuexPageC.vue'
 
 //安装路由到vue
 Vue.use(Router)
@@ -70,6 +74,20 @@ const routes = [
         path: '/pageWaterFall',
         name: 'pageWaterFall',
         component: PageWaterFall
+    },
+    { //vuex测试
+        path: '/vuexPageA',
+        name: 'vuexPageA',
+        component: VuexPageA
+    },
+    {
+        path: '/vuexPageB',
+        name: 'vuexPageB',
+        component: VuexPageB
+    },{
+        path: '/vuexPageC',
+        name: 'vuexPageC',
+        component: VuexPageC
     }
 ]
 

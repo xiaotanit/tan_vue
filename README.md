@@ -17,8 +17,8 @@ npm run build
 ### vue网络图片瀑布流效果动图 + 下拉刷新 + 上拉加载更多
 ![image](https://github.com/xiaotanit/tan_vue/blob/master/images/waterfall.gif)
 ![image](https://github.com/xiaotanit/tan_vue/blob/master/images/waterfall.png)
-### 博客地址
-See [vue网路图片瀑布流效果](https://www.cnblogs.com/tandaxia/p/12189301.html).
+### 博客园博文地址
+[vue网路图片瀑布流效果](https://www.cnblogs.com/tandaxia/p/12189301.html).
 
 ### 其他功能效果截图
 ![image](https://github.com/xiaotanit/tan_vue/blob/master/images/test.png)

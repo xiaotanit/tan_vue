@@ -13,6 +13,11 @@ Vue.use(PullRefresh);
 Vue.use(List);
 Vue.use(Toast);
 
+//vuex
+//api/store/index用于VuexPageA.vue和VuexPageB.vue页面
+import store from './api/store/index'  //当个module的vuex
+//api/store/moduleStore用于VuexPageC.vue页面， 多module
+// import store from './api/store/moduleStore' //多个module组成的vuex
 
 
 //全局守卫
@@ -87,6 +92,14 @@ router.afterEach((to, from)=>{
 
 
 new Vue({
-  router,  //key名字必须命名为router
+  router,  //路由key名字必须命名为router
+  store, // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
   render: h => h(App)
 }).$mount('#app')
+/*
+* 在vue的生命周期那张图片中，提到在created钩子中：
+* 1、判断是否指定"el"选项？否，则调用vm.$mount(el)函数。（这里的el值得就是#app标签）
+* 2、如果指定了"el"选项，则继续判断是否指定“template"选项？否，将el外部的html作为template编译；是将template编译到render函数中
+* 接着进入beforeMount钩子中：
+* 3、创建vm.$el, 并且用其替换"el"。（项目运行后，在浏览器查看页面标签，会发现#app标签确实被template的标签所替换，vm.$el指的是模板里面的最顶层标签）
+* */
